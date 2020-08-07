@@ -1,0 +1,2 @@
+class RubyOnStairs
+end
