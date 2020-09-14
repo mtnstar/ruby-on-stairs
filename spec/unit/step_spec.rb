@@ -1,6 +1,6 @@
-require_relative '../../lib/step'
+require_relative '../../lib/active_step'
 
-describe Step do
+describe ActiveStep do
 
   let(:step) { TestStep.new }
 
@@ -12,7 +12,7 @@ describe Step do
 
   end
 
-  class TestStep < Step
+  class TestStep < ActiveStep
 
     def perform
     end
