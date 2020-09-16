@@ -2,7 +2,7 @@ require_relative '../../../steps/1/1_create_file'
 
 describe CreateFile do
 
-  let(:step) { CreateFile.new }
+  let(:step) {described_class.new}
 
   context '#label' do
 
