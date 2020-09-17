@@ -1,0 +1,10 @@
+language: ruby
+cache:
+  bundler: true
+rvm:
+ - 2.5
+install:
+ - gem install bundler
+ - bundle install --path vendor/bundle
+script:
+ - bundle exec rspec
