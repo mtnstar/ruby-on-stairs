@@ -1,0 +1,4 @@
+# we prefer writing meaningful code over endless comments
+# well, well, well ... this doesn't mean no comments at all ;)
+Style/Documentation:
+  Enabled: false
