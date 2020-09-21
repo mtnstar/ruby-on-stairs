@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
+require 'rubygems'
 require 'commander'
+require_relative 'stairs'
 
 class RubyOnStairs
   include Commander::Methods
@@ -25,4 +27,12 @@ class RubyOnStairs
       end
     end
   end
+
+  private
+
+  def stairs
+    @stairs ||= Stairs.new
+  end
 end
+
+RubyOnStairs.new.run if $PROGRAM_NAME == __FILE__
