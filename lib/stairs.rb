@@ -6,5 +6,6 @@ class Stairs
   end
 
   def list
+    puts 'list list list ...'
   end
 end

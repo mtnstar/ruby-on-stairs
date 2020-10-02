@@ -19,13 +19,24 @@ class RubyOnStairs
       c.description = 'runs all or single steps/sub-step'
 
       c.action do |args|
-        TTY::Exit.exit_with(:usage_error, 'Credentials missing') if args.empty?
+        # TTY::Exit.exit_with(:usage_error, '') if args.empty?
         step_nr = args.first
         execute_action do
           stairs.run(step_nr)
         end
       end
     end
+
+    command :list do |c|
+      c.syntax = 'stairs list'
+      c.description = 'lists all steps'
+
+      c.action do |args|
+        stairs.list
+      end
+    end
+
+    run!
   end
 
   private
@@ -34,5 +45,3 @@ class RubyOnStairs
     @stairs ||= Stairs.new
   end
 end
-
-RubyOnStairs.new.run if $PROGRAM_NAME == __FILE__
