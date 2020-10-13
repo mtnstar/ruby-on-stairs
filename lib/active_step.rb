@@ -1,13 +1,11 @@
 # frozen_string_literal: true
 
-# require 'active_support'
-
 class ActiveStep
   attr_accessor :payload, :messages
 
   # class_attribute :description
 
-  FILE_NR_REGEX = /app\/steps\/([0-9]+)\/([0-9])*/.freeze
+  FILE_NR_REGEX = /steps\/([0-9]+)\/([0-9])*/.freeze
 
   def initialize
     @messages = { errors: [], messages: [] }
@@ -30,9 +28,11 @@ class ActiveStep
   private
 
   def info_start
+    info(label + ': Executing ...')
   end
 
   def info_completed
+    info(label + ': ... Done')
   end
 
   def step_nr
@@ -45,6 +45,10 @@ class ActiveStep
 
   def filename
     method(:perform).source_location[0]
+  end
+
+  def info(message)
+    puts message
   end
 
 end

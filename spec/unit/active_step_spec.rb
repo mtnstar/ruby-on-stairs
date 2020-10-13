@@ -7,6 +7,11 @@ describe ActiveStep do
   context '#up' do
 
     it 'performs step up' do
+      allow(step).to receive(:filename)
+        .and_return('/opt/steps-project/steps/1/1_test_step.rb')
+
+      expect(step.label).to eq('1.1 Test Step')
+
       step.up
     end
 
