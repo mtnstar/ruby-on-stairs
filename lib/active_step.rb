@@ -3,9 +3,7 @@
 class ActiveStep
   attr_accessor :payload, :messages
 
-  # class_attribute :description
-
-  FILE_NR_REGEX = /steps\/([0-9]+)\/([0-9])*/.freeze
+  FILE_NR_REGEX = %r{app/steps\/([0-9]+)\/([0-9])*}.freeze
 
   def initialize
     @messages = { errors: [], messages: [] }
@@ -50,5 +48,4 @@ class ActiveStep
   def info(message)
     puts message
   end
-
 end
