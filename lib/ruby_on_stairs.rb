@@ -2,7 +2,7 @@
 
 require 'rubygems'
 require 'commander'
-require_relative 'stairs'
+Dir.glob(File.join('**', '*.rb'), &method(:require))
 
 class RubyOnStairs
   include Commander::Methods
@@ -15,15 +15,11 @@ class RubyOnStairs
     program :help, 'Usage', 'stairs [flags]'
 
     command :run do |c|
-      c.syntax = 'cry run <step nr>'
+      c.syntax = 'stairs run <step nr>'
       c.description = 'runs all or single steps/sub-step'
 
       c.action do |args|
-        # TTY::Exit.exit_with(:usage_error, '') if args.empty?
-        step_nr = args.first
-        execute_action do
-          stairs.run(step_nr)
-        end
+        runner(args).exec
       end
     end
 
@@ -32,7 +28,7 @@ class RubyOnStairs
       c.description = 'lists all steps'
 
       c.action do |args|
-        stairs.list
+        lister(args).exec
       end
     end
 
@@ -41,7 +37,11 @@ class RubyOnStairs
 
   private
 
-  def stairs
-    @stairs ||= Stairs.new
+  def lister(args)
+    @lister ||= Cmds::Lister.new(args)
+  end
+
+  def runner
+    @runner ||= Cmds::Runner.new(args)
   end
 end

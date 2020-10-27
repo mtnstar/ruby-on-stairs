@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class ActiveStep
+  class_attribute :description
+
   attr_accessor :payload, :messages
 
   FILE_NR_REGEX = %r{app/steps\/([0-9]+)\/([0-9])*}.freeze
@@ -21,6 +23,10 @@ class ActiveStep
 
   def label
     "#{step_nr} #{class_label}"
+  end
+
+  def label_description
+    [label, description].compact.join(' - ')
   end
 
   private
